@@ -12,4 +12,5 @@ public interface ArtworksService {
     List<ArtWork> getArtworks();
     void deleteArtwork(long id);
     ArtWork updateArtwork(ArtWork artWork);
+    List<ArtWork> findByTitle(String title);
 }

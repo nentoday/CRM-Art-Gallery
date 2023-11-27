@@ -36,6 +36,12 @@ public class ArtworkController {
         artworksService.deleteArtwork(id);
         return "Artwork Successfully Deleted";
     }
-
-
+    @GetMapping
+    public List<ArtWork> searchArtworks(@RequestParam(name = "title", required = false) String title) {
+        if (title != null) {
+            return artworksService.findByTitle(title);
+        } else {
+            return artworksService.getArtworks();
+        }
+    }
 }

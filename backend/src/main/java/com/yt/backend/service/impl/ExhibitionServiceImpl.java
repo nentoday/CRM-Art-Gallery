@@ -1,13 +1,14 @@
-package com.yt.backend.service;
+package com.yt.backend.service.impl;
 
 import com.yt.backend.model.Exhibition;
 import com.yt.backend.repository.ExhibitionRepository;
+import com.yt.backend.service.ExhibitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class ExhibitionServiceImpl implements ExhibitionService{
+public class ExhibitionServiceImpl implements ExhibitionService {
     @Autowired
     private ExhibitionRepository exhibitionRepository;
 
@@ -31,7 +32,6 @@ public class ExhibitionServiceImpl implements ExhibitionService{
         exhibitionRepository.deleteById(id);
 
     }
-
     @Override
     public Exhibition updateExhibition(Exhibition exhibition) {
         return exhibitionRepository.save(exhibition);

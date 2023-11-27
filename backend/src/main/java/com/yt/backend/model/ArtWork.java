@@ -18,7 +18,7 @@ public class ArtWork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
-    private LocalDate creation_year;
+    private int creation_year;
     private String description;
     private String technique;
     private String artwork_link;

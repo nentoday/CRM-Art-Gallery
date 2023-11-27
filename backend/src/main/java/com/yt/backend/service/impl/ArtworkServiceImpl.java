@@ -1,14 +1,15 @@
-package com.yt.backend.service;
+package com.yt.backend.service.impl;
 
 import com.yt.backend.model.ArtWork;
 import com.yt.backend.repository.ArtworksRepository;
+import com.yt.backend.service.ArtworksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ArtworkServiceImpl implements ArtworksService{
+public class ArtworkServiceImpl implements ArtworksService {
     @Autowired
     private ArtworksRepository artworksRepository;
 
@@ -31,9 +32,13 @@ public class ArtworkServiceImpl implements ArtworksService{
     public void deleteArtwork(long id) {artworksRepository.deleteById(id);
 
     }
-
     @Override
     public ArtWork updateArtwork(ArtWork artWork) {
         return artworksRepository.save(artWork);
+    }
+
+    @Override
+    public List<ArtWork> findByTitle(String title) {
+        return artworksRepository.findByTitle(title);
     }
 }
