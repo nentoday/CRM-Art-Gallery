@@ -1,52 +1,69 @@
 <template>
   <main>
-    <!-- Table-->
     <div>
       <div class="container mt-4">
-        <h1>Роботи в галереї</h1>
-        <a href="/artwork/add">Add Artworks</a>
-        <table class="table table-bordered table-responsive ">
-          <thead>
-          <tr>
-            <th scope="col">Назва роботи</th>
-            <th scope="col">Опис роботи</th>
-            <th scope="col">Техніка створення</th>
-            <th scope="col">Рік створення</th>
-            <th scope="col">Художник</th>
-            <th scope="col">Дії</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="artwork in artworks" :key="artwork.id">
-            <th scope="row">{{ artwork.title }}</th>
-            <td>{{ artwork.description }}</td>
-            <td>{{ artwork.technique }}</td>
-            <td>{{ artwork.creation_year }}</td>
-            <td>{{ artwork.artwork_link }}</td>
-            <td>
-              <a class="btn btn-primary" :href="`/edit/${artwork.id}`">Edit</a>
-              <button class="btn btn-danger mx-2" @click="deleteArtwork(artwork.id)">Delete</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <h1 class="text-center">Роботи в галереї</h1>
+        <label for="searchInput" class="form-label">Пошук за назвою:</label>
+
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-grow-1">
+            <input type="text" class="form-control" v-model="searchInput" id="searchInput" placeholder="Пошук" style="width: 80%;">
+          </div>
+          <a href="/artwork/add" class="btn btn-primary">Додати нову роботу</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">Назва роботи</th>
+              <th scope="col">Опис роботи</th>
+              <th scope="col">Техніка створення</th>
+              <th scope="col">Рік створення</th>
+              <th scope="col">Посилання на роботу</th>
+              <th scope="col">Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="artwork in displayedArtworks" :key="artwork.id">
+              <td>{{ artwork.title }}</td>
+              <td>{{ artwork.description }}</td>
+              <td>{{ artwork.technique }}</td>
+              <td>{{ artwork.creation_year }}</td>
+              <td>{{ artwork.artwork_link }}</td>
+              <td>
+                <a class="btn btn-primary m-1" :href="`/edit/${artwork.id}`">Edit</a>
+                <button class="btn btn-danger m-1" @click="deleteArtwork(artwork.id)">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </main>
 </template>
-
 
 <script>
 export default {
   name: 'home',
   data() {
     return {
-      artworks: []
-    }
+      artworks: [],
+      searchInput: '',
+    };
+  },
+  computed: {
+    displayedArtworks() {
+      return this.searchInput
+          ? this.artworks.filter(artwork =>
+              artwork.title.toLowerCase().includes(this.searchInput.toLowerCase())
+          )
+          : this.artworks;
+    },
   },
 
   beforeMount() {
-    this.getArtworks()
+    this.getArtworks();
   },
 
   methods: {
@@ -54,24 +71,35 @@ export default {
       fetch('http://localhost:8080/artworks')
           .then(res => res.json())
           .then(data => {
-            this.artworks = data
-            console.log(data)
-          })
+            this.artworks = data;
+            console.log(data);
+          });
     },
     deleteArtwork(id) {
       fetch(`http://localhost:8080/artwork/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
       })
           .then(data => {
-            console.log(data)
-            this.getArtworks()
+            console.log(data);
+            this.getArtworks();
+          });
+    },
+    searchArtworks() {
+      // No need to set displayedArtworks here, it will be updated automatically by the computed property
+      // Just fetch the data and let the computed property handle the filtering
+      fetch(`http://localhost:8080/artworks?title=${this.searchInput}`)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
           })
-    }
-  }
-
-}
-
+          .catch(error => {
+            console.error('Error during search:', error);
+          });
+    },
+  },
+};
 </script>
+
 <style scoped>
 .container {
   background-color: #ffffff;
@@ -87,6 +115,4 @@ export default {
   display: flex !important;
   flex-direction: column !important;
 }
-
-
 </style>

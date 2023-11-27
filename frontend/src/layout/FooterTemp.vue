@@ -11,7 +11,7 @@ footer {
   background-color: #9a9697;
   color: #fff;
   text-align: center;
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 footer a {

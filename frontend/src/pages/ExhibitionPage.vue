@@ -2,16 +2,6 @@
   <div>
     <div class="container mt-4">
       <h1>Виставки</h1>
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Пошук">
-        <select class="filter-select">
-          <option value="week">Наступний тиждень</option>
-          <option value="month">Місяць</option>
-          <option value="year">Рік</option>
-        </select>
-        <button type="submit" class="btn btn-primary m-lg-2">Підтвердити</button>
-      </div>
-      <p>Проведіть пошук необхідної виставки або оберіть проміжок часу</p>
       <div class="exhibition">
         <h2>Крута виставка 1</h2>
         <div class="artworks">
