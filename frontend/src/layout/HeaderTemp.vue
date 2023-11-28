@@ -27,9 +27,8 @@ import { RouterLink } from 'vue-router'
             <li class="nav-item">
               <router-link to="/exhibition" class="nav-link">Виставки</router-link>
             </li>
-
             <li class="nav-item">
-              <router-link to="/login" class="nav-link btn login-button">Увійти</router-link>
+              <router-link to="/comment" class="nav-link">Відгуки</router-link>
             </li>
           </ul>
         </div>

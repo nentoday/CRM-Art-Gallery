@@ -44,7 +44,7 @@
 </template>
 <script>
 export default {
-  name: 'add',
+  name: 'addArtwork',
   data() {
     return {
       artwork: {

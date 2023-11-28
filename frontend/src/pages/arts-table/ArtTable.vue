@@ -84,18 +84,6 @@ export default {
             this.getArtworks();
           });
     },
-    searchArtworks() {
-      // No need to set displayedArtworks here, it will be updated automatically by the computed property
-      // Just fetch the data and let the computed property handle the filtering
-      fetch(`http://localhost:8080/artworks?title=${this.searchInput}`)
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-          })
-          .catch(error => {
-            console.error('Error during search:', error);
-          });
-    },
   },
 };
 </script>

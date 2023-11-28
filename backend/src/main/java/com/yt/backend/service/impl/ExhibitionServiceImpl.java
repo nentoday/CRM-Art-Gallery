@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ExhibitionServiceImpl implements ExhibitionService {
+
     @Autowired
     private ExhibitionRepository exhibitionRepository;
 
@@ -19,21 +21,24 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 
     @Override
     public Exhibition getExhibitionById(long id) {
-        return exhibitionRepository.findById(id).get();
+        return exhibitionRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Exhibition> getExhibitions() {
-        return (List<Exhibition>) exhibitionRepository.findAll();
+    public List<Exhibition> getExhibition() {
+        return exhibitionRepository.findAll();
+    }
+
+    @Override
+    public Exhibition updateExhibition(Exhibition exhibition) {
+        return exhibitionRepository.save(exhibition);
     }
 
     @Override
     public void deleteExhibition(long id) {
         exhibitionRepository.deleteById(id);
+    }
 
-    }
-    @Override
-    public Exhibition updateExhibition(Exhibition exhibition) {
-        return exhibitionRepository.save(exhibition);
-    }
+
+
 }

@@ -7,9 +7,16 @@ import java.util.List;
 
 @Service
 public interface ExhibitionService {
+
     Exhibition addExhibition(Exhibition exhibition);
+
     Exhibition getExhibitionById(long id);
-    List<Exhibition> getExhibitions();
-    void deleteExhibition(long id);
+
+    List<Exhibition> getExhibition();
+
     Exhibition updateExhibition(Exhibition exhibition);
+
+    void deleteExhibition(long id);
+
+
 }
