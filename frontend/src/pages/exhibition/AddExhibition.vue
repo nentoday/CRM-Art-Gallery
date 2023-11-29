@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="my-5">
+    <div class="container my-5">
       <div class="mx-auto" style="max-width: 600px;">
         <h2 class="text-center mb-3">Додати виставку</h2>
         <form @submit.prevent="addExhibition">
@@ -12,7 +12,7 @@
           </div>
           <div class="form-group mt-3">
             <label for="description">Опис виставки</label>
-            <textarea id="description" class="form-control" maxlength="100" v-model="exhibition.description"
+            <textarea id="description" class="form-control" maxlength="500" v-model="exhibition.description"
                       @input="validateDescription" required></textarea>
             <p class="mt-1 error-message" id="description-error">{{ descriptionError }}</p>
           </div>

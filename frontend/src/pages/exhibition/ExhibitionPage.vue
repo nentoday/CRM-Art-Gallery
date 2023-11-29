@@ -2,8 +2,7 @@
   <div>
     <div class="container mt-4">
       <h1>Виставки</h1>
-      <a href="/exhibition/add" class="btn btn-primary mb-4">Додати нову роботу</a>
-
+      <a href="/exhibition/add" class="btn btn-primary mb-4">Додати виставку</a>
       <div class="row justify-content-center">
         <div v-for="exhibition in exhibition" :key="exhibition.id" class="col-md-6 mb-4">
           <div class="card" style="width: 100%;">
@@ -42,8 +41,8 @@ export default {
       fetch('http://localhost:8080/exhibition')
           .then(res => res.json())
           .then(data => {
-            this.exhibition = data;
-            console.log(data);
+            this.exhibition = data.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+            console.log(this.exhibition);
           });
     },
     deleteExhibition(id) {
@@ -80,10 +79,5 @@ export default {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   flex: 1;
-}
-
-.button-group {
-  display: flex !important;
-  flex-direction: column !important;
 }
 </style>

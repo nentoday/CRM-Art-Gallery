@@ -11,7 +11,8 @@
           </div>
           <a href="/artwork/add" class="btn btn-primary">Додати нову роботу</a>
         </div>
-        <div class="table-responsive">
+
+        <div class="table-responsive" v-if="displayedArtworks.length > 0">
           <table class="table table-bordered">
             <thead>
             <tr>
@@ -38,10 +39,15 @@
             </tbody>
           </table>
         </div>
+
+        <div v-else>
+          <p>Не знайдено жодних співпадінь.</p>
+        </div>
       </div>
     </div>
   </main>
 </template>
+
 
 <script>
 export default {

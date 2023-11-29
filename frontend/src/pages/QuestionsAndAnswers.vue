@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-grow-1">
-      <input type="text" class="form-control" v-model="searchInput" id="searchInput" placeholder="Пошук" style="width: 80%;">
+    <h3 class="text-center mt-4">Найпоширеніші запитання</h3>
+    <div class="d-flex justify-content-center mt-4">
+      <input type="text" class="form-control" v-model="searchInput" id="searchInput" placeholder="Пошук" style="width: 65%;">
+    </div>
+    <div v-if="displayedQuestions.length === 0" class="text-center mt-3">
+      <p>Не знайдено жодних співпадінь.</p>
     </div>
     <div v-for="q in displayedQuestions" :key="q.id" class="row mb-4 mt-4">
       <div class="col-lg-8 offset-lg-2">
@@ -48,8 +52,6 @@ export default {
     },
   }
 }
-
 </script>
 <style scoped>
-
 </style>

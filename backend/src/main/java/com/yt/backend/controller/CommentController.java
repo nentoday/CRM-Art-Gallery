@@ -24,12 +24,15 @@ public class CommentController {
         return commentService.getCommentById(commentId);
     }
 
-
     @RequestMapping("/comment")
-    public List<Comment> getComment(){return commentService.getComment();}
+    public List<Comment> getComment(){
+        return commentService.getComment();
+    }
 
     @PutMapping("/comment")
-    public Comment updateComment(@RequestBody Comment comment){return commentService.updateComment(comment);}
+    public Comment updateComment(@RequestBody Comment comment){
+        return commentService.updateComment(comment);
+    }
 
     @DeleteMapping("/comment/{id}")
     public String deleteComment(@PathVariable("id") long id){

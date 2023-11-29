@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="my-5">
+    <div class="container my-5">
       <div class="mx-auto" style="max-width: 600px;">
         <h2 class="text-center mb-3">Додати роботу</h2>
         <form @submit.prevent="addArtwork">

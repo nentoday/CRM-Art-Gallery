@@ -29,8 +29,8 @@ public class ArtworkServiceImpl implements ArtworksService {
     }
 
     @Override
-    public void deleteArtwork(long id) {artworksRepository.deleteById(id);
-
+    public void deleteArtwork(long id) {
+        artworksRepository.deleteById(id);
     }
     @Override
     public ArtWork updateArtwork(ArtWork artWork) {
