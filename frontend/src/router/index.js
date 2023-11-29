@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ArtTable from "@/pages/arts-table/ArtTable.vue";
 import ExhibitionPage from "@/pages/exhibition/ExhibitionPage.vue";
 import CommentByPeople from "@/pages/CommentByPeople.vue";
+import QuestionsAndAnswers from "@/pages/QuestionsAndAnswers.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,7 +30,7 @@ const router = createRouter({
     {
       path: '/q-a',
       name: 'QA',
-      component:  () => import('../pages/QuestionsAndAnswers.vue')
+      component: QuestionsAndAnswers,
     },
     {
       path: '/edit/:id',
@@ -50,11 +51,6 @@ const router = createRouter({
       path: '/comment',
       name: 'comment',
       component: CommentByPeople,
-    },
-    {
-      path: '/comment/add',
-      name: 'AddComment',
-      component: () => import('@/pages/AddComments.vue')
     },
   ]
 })

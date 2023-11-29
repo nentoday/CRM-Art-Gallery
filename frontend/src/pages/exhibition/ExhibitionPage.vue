@@ -2,36 +2,27 @@
   <div>
     <div class="container mt-4">
       <h1>Виставки</h1>
-      <a href="/exhibition/add" class="btn btn-primary">Додати нову роботу</a>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th scope="col">Назва виставки</th>
-            <th scope="col">Опис</th>
-            <th scope="col">Початок виставки</th>
-            <th scope="col">Кінець виставки</th>
-            <th scope="col">Посилання на картинку</th>
-            <th scope="col">Дії</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="exhibition in exhibition" :key="exhibition.id">
-            <td>{{ exhibition.title }}</td>
-            <td>{{ exhibition.description }}</td>
-            <td>{{ exhibition.startTime }}</td>
-            <td>{{ exhibition.endTime }}</td>
-            <td>{{ exhibition.imgUrl }}</td>
-            <td>
-              <button class="btn btn-danger m-1" @click="deleteExhibition(exhibition.id)">Delete</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+      <a href="/exhibition/add" class="btn btn-primary mb-4">Додати нову роботу</a>
+
+      <div class="row justify-content-center">
+        <div v-for="exhibition in exhibition" :key="exhibition.id" class="col-md-6 mb-4">
+          <div class="card" style="width: 100%;">
+            <img :src="exhibition.imgUrl" class="card-img-top" alt="Картинка виставки"
+                 style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ exhibition.title }}</h5>
+              <p class="card-text">{{ exhibition.description }}</p>
+              <p class="card-text"><strong>Початок:</strong> {{ formatDate(exhibition.startTime) }}</p>
+              <p class="card-text"><strong>Кінець:</strong> {{ formatDate(exhibition.endTime) }}</p>
+              <button class="btn btn-danger" @click="deleteExhibition(exhibition.id)">Видалити</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'Exhibition',
@@ -46,6 +37,7 @@ export default {
   },
 
   methods: {
+
     getExhibition() {
       fetch('http://localhost:8080/exhibition')
           .then(res => res.json())
@@ -62,6 +54,18 @@ export default {
             console.log(data);
             this.getExhibition();
           });
+    },
+    formatDate(dateTimeString) {
+      const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      };
+      const dateTime = new Date(dateTimeString);
+      return dateTime.toLocaleDateString('uk-ua', options).replace(/T/, ' ');
     },
   },
 };

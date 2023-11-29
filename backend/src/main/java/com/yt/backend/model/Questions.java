@@ -11,13 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "comment")
-public class Comment {
+@Table(name = "questions")
+public class Questions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nickname;
+
+    private String question;
 
     @Column(length = 1000)
-    private String comment;
+    private String answer;
 }

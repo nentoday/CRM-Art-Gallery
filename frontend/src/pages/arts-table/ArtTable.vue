@@ -19,7 +19,7 @@
               <th scope="col">Опис роботи</th>
               <th scope="col">Техніка створення</th>
               <th scope="col">Рік створення</th>
-              <th scope="col">Посилання на роботу</th>
+              <th scope="col">Автор</th>
               <th scope="col">Дії</th>
             </tr>
             </thead>
@@ -29,7 +29,7 @@
               <td>{{ artwork.description }}</td>
               <td>{{ artwork.technique }}</td>
               <td>{{ artwork.creation_year }}</td>
-              <td>{{ artwork.artwork_link }}</td>
+              <td>{{ artwork.artist }}</td>
               <td>
                 <a class="btn btn-primary m-1" :href="`/edit/${artwork.id}`">Edit</a>
                 <button class="btn btn-danger m-1" @click="deleteArtwork(artwork.id)">Delete</button>

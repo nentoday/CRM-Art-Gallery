@@ -29,10 +29,9 @@
             <p class="mt-1 error-message" id="year-error">{{ yearError }}</p>
           </div>
           <div class="form-group mt-3">
-            <label for="imageLink">Посилання на зображення роботи</label>
-            <input type="text" id="imageLink" class="form-control" v-model="artwork.artwork_link"
-                   @input="validateArtworkLink" required>
-            <p class="mt-1 error-message" id="imageLink-error">{{ imageLinkError }}</p>
+            <label for="artist">Автор роботи</label>
+            <input type="text" id="artist" class="form-control" v-model="artwork.artist" @input="validateArtist" required>
+            <p class="mt-1 error-message" id="artist-error">{{ artistError }}</p>
           </div>
           <div class="form-group mt-3">
             <input class="btn btn-primary w-100 mb-5" type="submit" value="Додати">
@@ -52,13 +51,13 @@ export default {
         creation_year: '',
         description: '',
         technique: '',
-        artwork_link: ''
+        artist: ''
       },
       nameError: '',
       descriptionError: '',
       techniqueError: '',
       yearError: '',
-      imageLinkError: ''
+      artistError: ''
     };
   },
   methods: {
@@ -98,7 +97,7 @@ export default {
         isValid = false;
       }
 
-      if (!this.validateArtworkLink()) {
+      if (!this.validateArtist()) {
         isValid = false;
       }
 
@@ -109,7 +108,7 @@ export default {
       this.descriptionError = '';
       this.techniqueError = '';
       this.yearError = '';
-      this.imageLinkError = '';
+      this.artistError = '';
     },
     validateName() {
       const isValid = this.artwork.title.trim() !== '';
@@ -137,10 +136,10 @@ export default {
       return true;
     },
 
-    validateArtworkLink() {
-      const linkRegex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/;
-      this.imageLinkError = linkRegex.test(this.artwork.artwork_link) ? '' : 'Введіть коректне посилання на зображення';
-      return linkRegex.test(this.artwork.artwork_link);
+    validateArtist() {
+      const artistRegex =/^[a-zA-Zа-яА-ЯіїІЇ '-]/;
+      this.artistError = artistRegex.test(this.artwork.artist) ? '' : 'Введіть автора коректно';
+      return artistRegex.test(this.artwork.artist);
     }
   }
 };

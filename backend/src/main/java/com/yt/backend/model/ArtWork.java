@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,5 +19,6 @@ public class ArtWork {
     private int creation_year;
     private String description;
     private String technique;
-    private String artwork_link;
+
+    private String artist;
 }
